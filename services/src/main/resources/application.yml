@@ -1,0 +1,18 @@
+kafka:
+  bootstrapServers: 127.0.0.1:9092
+  consumers:
+    group: task-group
+    topicName: task_topic
+    replyTopic: reply_topic
+
+#web application
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+
+#Swagger
+#springdoc:
+#  swagger-ui:
+#    tryItOutEnabled: true
