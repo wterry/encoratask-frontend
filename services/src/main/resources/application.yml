@@ -12,7 +12,7 @@ spring:
       prefix: /WEB-INF/jsp/
       suffix: .jsp
 
-#Swagger
-#springdoc:
-#  swagger-ui:
-#    tryItOutEnabled: true
+#Stops embedded tomcat from scanning for unnecessary xml dependencies that produce a WARN FileNotFound exception on startup and stress me out.
+server:
+  tomcat:
+    additional-tld-skip-patterns: "jaxb1-impl.jar, jsr173_1.0_api.jar, activation.jar, jaxb-api.jar"
