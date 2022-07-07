@@ -1,11 +1,9 @@
 package com.skytouch.task.services.impl;
 
-import com.skytouch.task.commons.dtos.responses.ProductResponse;
 import com.skytouch.task.commons.dtos.responses.RestockInvoiceResponse;
 import com.skytouch.task.commons.event.Event;
 import com.skytouch.task.commons.event.EventType;
 import com.skytouch.task.commons.event.services.Producer;
-import com.skytouch.task.commons.model.RestockInvoice;
 import com.skytouch.task.commons.utils.JsonUtils;
 import com.skytouch.task.services.InventoryService;
 import com.skytouch.task.services.exceptions.NoResultsReceivedException;

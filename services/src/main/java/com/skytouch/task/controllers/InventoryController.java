@@ -21,7 +21,7 @@ import java.io.IOException;
 @AllArgsConstructor
 public class InventoryController {
 
-    private InventoryService service;
+    private final InventoryService service;
 
     @GetMapping("/restockInvoices")
     public Response generateRestockInvoices() {
