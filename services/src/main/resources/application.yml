@@ -1,5 +1,5 @@
 kafka:
-  bootstrapServers: 127.0.0.1:9092
+  bootstrapServers: 127.0.0.1:49816
   consumers:
     group: task-group
     topicName: task_topic
