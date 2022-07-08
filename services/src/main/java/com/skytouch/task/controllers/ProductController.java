@@ -9,6 +9,7 @@ import com.skytouch.task.services.ProductService;
 import com.skytouch.task.services.exceptions.NoResultsReceivedException;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,62 +32,60 @@ public class ProductController extends AbstractController {
     private ProductService service;
 
     @PostMapping("/create")
-    public Response createProduct(@RequestBody @Valid ProductDTO product) {
+    public ResponseEntity<Response> createProduct(@RequestBody @Valid ProductDTO product) {
         try {
-            String correlationslId = service.createProduct(product);
+            String correlationalId = service.createProduct(product);
 
-            return new Response(HttpStatus.OK.value(), "Request queued", correlationslId);
+            return new ResponseEntity<Response> (new Response(HttpStatus.OK.value(), "Request queued", correlationalId), HttpStatus.OK);
         } catch (JsonProcessingException e) {
-            return new Response(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Error queuing message, please try again later.", null);
+            return new ResponseEntity<Response> (new Response (HttpStatus.INTERNAL_SERVER_ERROR.value(), "Error queuing message, please try again later.", null), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @PutMapping("/update")
-    public Response updateProduct(@RequestBody @Valid UpdateProductDTO product) {
+    public ResponseEntity<Response> updateProduct(@RequestBody @Valid UpdateProductDTO product) {
         try {
             String correlationalId = service.updateProduct(product);
 
-            return new Response(HttpStatus.OK.value(), "Request queued", correlationalId);
+            return new ResponseEntity<Response> (new Response(HttpStatus.OK.value(), "Request queued", correlationalId), HttpStatus.OK);
         } catch (JsonProcessingException e) {
-            return new Response(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Error queuing message, please try again later.", null);
+            return new ResponseEntity<Response> (new Response (HttpStatus.INTERNAL_SERVER_ERROR.value(), "Error queuing message, please try again later.", null), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @DeleteMapping("/delete")
-    public Response deleteProduct(@RequestBody @Valid DeleteProductDTO product) {
+    public ResponseEntity<Response> deleteProduct(@RequestBody @Valid DeleteProductDTO product) {
         try {
             String correlationalId = service.deleteProduct(product);
 
-            return new Response(HttpStatus.OK.value(), "Request queued", correlationalId);
+            return new ResponseEntity<Response> (new Response(HttpStatus.OK.value(), "Request queued", correlationalId), HttpStatus.OK);
         } catch (JsonProcessingException e) {
-            return new Response(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Error queuing message, please try again later.", null);
+            return new ResponseEntity<Response> (new Response (HttpStatus.INTERNAL_SERVER_ERROR.value(), "Error queuing message, please try again later.", null), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     //Before JSP shenanigans
     @GetMapping("")
-    public Response findAllProducts() {
+    public ResponseEntity<Response> findAllProducts() {
         try {
-            return new Response(HttpStatus.OK.value(), "Search completed", service.findAllProducts());
+            return new ResponseEntity<>(new Response(HttpStatus.OK.value(), "Search completed", service.findAllProducts()), HttpStatus.OK);
         } catch (IOException e) {
-            return new Response(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Error queuing message, please try again later.", null);
+            return new ResponseEntity<Response>( new Response (HttpStatus.INTERNAL_SERVER_ERROR.value(), "Error queuing message, please try again later.", null), HttpStatus.INTERNAL_SERVER_ERROR);
         }
         catch (NoResultsReceivedException e) {
-            return new Response(HttpStatus.REQUEST_TIMEOUT.value(), "No search results received.", null);
+            return new ResponseEntity<Response> (new Response(HttpStatus.REQUEST_TIMEOUT.value(), "No search results received.", null), HttpStatus.REQUEST_TIMEOUT);
         }
     }
 
     @GetMapping("/{id}/")
-    public Response findProduct(@PathVariable("id") Integer id) {
+    public ResponseEntity<Response> findProduct(@PathVariable("id") Integer id) {
         try {
-            return new Response(HttpStatus.OK.value(), "Search completed", service.findProduct(id));
+            return new ResponseEntity<Response> (new Response (HttpStatus.OK.value(), "Search completed", service.findProduct(id)), HttpStatus.OK);
         } catch (IOException e) {
-            return new Response(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Error queuing message, please try again later.", null);
+            return new ResponseEntity<Response>( new Response (HttpStatus.INTERNAL_SERVER_ERROR.value(), "Error queuing message, please try again later.", null), HttpStatus.INTERNAL_SERVER_ERROR);
         }
         catch (NoResultsReceivedException e) {
-            return new Response(HttpStatus.REQUEST_TIMEOUT.value(), "No search results received.", null);
+            return new ResponseEntity<Response> (new Response(HttpStatus.REQUEST_TIMEOUT.value(), "No search results received.", null), HttpStatus.REQUEST_TIMEOUT);
         }
     }
-
-
 }
