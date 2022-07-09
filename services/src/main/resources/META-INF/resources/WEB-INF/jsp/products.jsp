@@ -1,11 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<!doctype html>
 
 <html>
 <head>
     <title>View Products</title>
-    <link href="<c:url value="/css/common.css"/>" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
     <c:url var="addProductUrl" value="http://localhost:8080/pages/products/add" />
@@ -13,14 +15,14 @@
     <c:url var ="deleteProductUrl" value="http://localhost:8080/pages/products/delete" />
     <c:url var ="generateInvoicesUrl" value="http://localhost:8080/pages/inventory/invoices" />
 
-    <center><b>Existing Catalog</b></center>
+    <h2 class="text-center">Existing Catalog</h2>
     <br>
 
     <c:if test="${success}">
-        <center>Operation Successful! Correlational Id: ${correlationalId}</center>
+        <h4 class="text-center">Operation Successful! Correlational Id: ${correlationalId}</h4>
     </c:if>
     <c:if test="${validationError}">
-        <center>Invalid Input! Please, review the following:</center>
+        <h4 class="text-center">Invalid Input! Please, review the following:</h4>
         <br>
         <table align="center">
             <tbody>
@@ -39,14 +41,14 @@
     </c:if>
 
 <br>
-<table align="center">
+<table align="center" class="table table-striped">
     <thead>
     <tr>
-        <th>ID</th>
-        <th>SKU</th>
-        <th>Description</th>
-        <th><a href=${addProductUrl}>Add Product</a></th>
-        <th><a href=${generateInvoicesUrl}>List Restock Invoices</a></th>
+        <th scope="col">ID</th>
+        <th scope="col">SKU</th>
+        <th scope="col">Description</th>
+        <th scope="col"><a href=${addProductUrl}>Add Product</a></th>
+        <th scope="col"><a href=${generateInvoicesUrl}>List Restock Invoices</a></th>
     </tr>
     </thead>
     <tbody>
@@ -68,17 +70,17 @@
 <!-- forms and such go here, they should appear only when needed -->
     <c:if test="${editing}">
 
-        <div align="center"><b>Product Details</b></div>
+        <h5 class="text-center">Product Details</h5>
         <br>
         <form:form action="${editProductUrl}" method="post" modelAttribute="changingProduct">
             <table align="center">
                 <tbody>
-                    <tr hidden="true"><td align="right"><form:label path="id">ID: </form:label></td> <td><form:input path="id" type="number" /></td></tr>
-                    <tr><td align="right"><form:label path="sku">SKU: </form:label></td> <td><form:input path="sku" type="text" /></td></tr>
-                    <tr><td align="right"><form:label path="description">Description: </form:label></td> <td><form:input path="description" type="text" /></td></tr>
-                    <tr><td align="right"><form:label path="price">Price: </form:label></td> <td><form:input path="price" type="number" /></td></tr>
-                    <tr><td align="right"><form:label path="inventoryStock">Stock: </form:label></td> <td><form:input path="inventoryStock" type="number" /></td></tr>
-                    <tr><td/><td><input type="submit" value="submit" /></td></tr>
+                    <tr><td align="right"><form:label path="id">ID: </form:label></td> <td><form:input readonly="true" class="form-control-plaintext" path="id" type="number" /></td></tr>
+                    <tr><td align="right"><form:label path="sku">SKU: </form:label></td> <td><form:input class="form-control form-control-sm" path="sku" type="text" /></td></tr>
+                    <tr><td align="right"><form:label path="description">Description: </form:label></td> <td><form:input class="form-control form-control-sm" path="description" type="text" /></td></tr>
+                    <tr><td align="right"><form:label path="price">Price: </form:label></td> <td><form:input path="price" class="form-control form-control-sm" type="number" /></td></tr>
+                    <tr><td align="right"><form:label path="inventoryStock">Stock: </form:label></td> <td><form:input class="form-control form-control-sm" path="inventoryStock" type="number" /></td></tr>
+                    <tr><td/><td><button class="btn btn-primary" type="submit" value="submit">Update</button></td></tr>
                 </tbody>
             </table>
         </form:form>
@@ -87,16 +89,16 @@
     <!-- add new product form -->
     <c:if test="${adding}">
 
-        <div align="center"><b>New Product</b></div>
+        <h5 class="text-center">New Product</h5>
         <br>
         <form:form action="${addProductUrl}" method="post" modelAttribute="newProduct">
             <table align="center">
                 <tbody>
-                <tr><td align="right"><form:label path="sku">SKU: </form:label></td> <td><form:input path="sku" type="text" /></td></tr>
-                <tr><td align="right"><form:label path="description">Description: </form:label></td> <td><form:input path="description" type="text" /></td></tr>
-                <tr><td align="right"><form:label path="price">Price: </form:label></td> <td><form:input  path="price" type="number" step=".01"/></td></tr>
-                <tr><td align="right"><form:label path="inventoryStock">Stock: </form:label></td> <td><form:input path="inventoryStock" type="number"  /></td></tr>
-                <tr><td/><td><input type="submit" value="submit" /></td></tr>
+                <tr><td align="right"><form:label path="sku">SKU: </form:label></td> <td><form:input  class="form-control form-control-sm" path="sku" type="text" /></td></tr>
+                <tr><td align="right"><form:label path="description">Description: </form:label></td> <td><form:input class="form-control form-control-sm" path="description" type="text" /></td></tr>
+                <tr><td align="right"><form:label path="price">Price: </form:label></td> <td><form:input  class="form-control form-control-sm" path="price" type="number" step=".01"/></td></tr>
+                <tr><td align="right"><form:label path="inventoryStock">Stock: </form:label></td> <td><form:input class="form-control form-control-sm" path="inventoryStock" type="number"  /></td></tr>
+                <tr><td/><td><button class="btn btn-primary" type="submit" value="submit">Create</button></td></tr>
                 </tbody>
             </table>
         </form:form>

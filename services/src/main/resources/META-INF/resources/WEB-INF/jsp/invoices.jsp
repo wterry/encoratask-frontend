@@ -1,21 +1,22 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<!doctype html>
 <html>
     <title>Inventory Restock Invoices</title>
-    <link href="<c:url value="/css/common.css"/>" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
     <body>
     <c:url var="listProductsUrl" value="http://localhost:8080/pages/products/list" />
-        <center><b>Restock Invoices for Low Stock Products</b></center>
+        <h2 class="text-center">Existing Catalog</h2>
         <br>
-        <table align="center">
+        <table align="center" class="table table-striped">
             <thead>
             <tr>
-                <th>ID</th>
-                <th>SKU</th>
-                <th>Description</th>
-                <th>Missing Stock (to reach minimum)</th>
-                <th>Total Restock Price</th>
+                <th scope="col">ID</th>
+                <th scope="col">SKU</th>
+                <th scope="col">Description</th>
+                <th scope="col">Missing Stock (to reach minimum)</th>
+                <th scope="col">Total Restock Price</th>
             </tr>
             </thead>
             <tbody>
