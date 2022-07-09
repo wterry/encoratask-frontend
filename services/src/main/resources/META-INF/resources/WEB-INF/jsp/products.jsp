@@ -73,11 +73,11 @@
         <form:form action="${editProductUrl}" method="post" modelAttribute="changingProduct">
             <table align="center">
                 <tbody>
-                    <tr hidden="true"><td align="right"><form:label path="id">ID: </form:label></td> <td><form:input path="id" type="text" /></td></tr>
+                    <tr hidden="true"><td align="right"><form:label path="id">ID: </form:label></td> <td><form:input path="id" type="number" /></td></tr>
                     <tr><td align="right"><form:label path="sku">SKU: </form:label></td> <td><form:input path="sku" type="text" /></td></tr>
                     <tr><td align="right"><form:label path="description">Description: </form:label></td> <td><form:input path="description" type="text" /></td></tr>
-                    <tr><td align="right"><form:label path="price">Price: </form:label></td> <td><form:input path="price" type="text" /></td></tr>
-                    <tr><td align="right"><form:label path="inventoryStock">Stock: </form:label></td> <td><form:input path="inventoryStock" type="text" /></td></tr>
+                    <tr><td align="right"><form:label path="price">Price: </form:label></td> <td><form:input path="price" type="number" /></td></tr>
+                    <tr><td align="right"><form:label path="inventoryStock">Stock: </form:label></td> <td><form:input path="inventoryStock" type="number" /></td></tr>
                     <tr><td/><td><input type="submit" value="submit" /></td></tr>
                 </tbody>
             </table>
@@ -94,8 +94,8 @@
                 <tbody>
                 <tr><td align="right"><form:label path="sku">SKU: </form:label></td> <td><form:input path="sku" type="text" /></td></tr>
                 <tr><td align="right"><form:label path="description">Description: </form:label></td> <td><form:input path="description" type="text" /></td></tr>
-                <tr><td align="right"><form:label path="price">Price: </form:label></td> <td><form:input path="price" type="text" /></td></tr>
-                <tr><td align="right"><form:label path="inventoryStock">Stock: </form:label></td> <td><form:input path="inventoryStock" type="text" /></td></tr>
+                <tr><td align="right"><form:label path="price">Price: </form:label></td> <td><form:input  path="price" type="number" step=".01"/></td></tr>
+                <tr><td align="right"><form:label path="inventoryStock">Stock: </form:label></td> <td><form:input path="inventoryStock" type="number"  /></td></tr>
                 <tr><td/><td><input type="submit" value="submit" /></td></tr>
                 </tbody>
             </table>

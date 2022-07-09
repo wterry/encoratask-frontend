@@ -132,6 +132,7 @@ public class ProductListPageController {
 
     @PostMapping("/edit")
     public RedirectView doEditProduct(@ModelAttribute("changingProduct") UpdateProductDTO request, RedirectAttributes model) {
+
         HttpEntity<UpdateProductDTO> param = new HttpEntity<>(request);
         Response updateResult = null;
 
@@ -158,6 +159,7 @@ public class ProductListPageController {
     @PostMapping("/add")
     public RedirectView doAddProduct(@ModelAttribute("newProduct") ProductDTO request, RedirectAttributes model) {
         Response addResult = null;
+
         try {
             addResult = restTemplate.postForObject(properties.getAddProductUrl(), request, Response.class);
         }
@@ -166,7 +168,7 @@ public class ProductListPageController {
             if (e.getStatusCode().value() == 400) {
                 handleValidationErrors(e, model);
                 model.addFlashAttribute("adding", true);
-                model.addFlashAttribute("newProduct", new ProductDTO());
+                model.addFlashAttribute("newProduct", request);
             }
             else {
                 handleGenericError(e, model);

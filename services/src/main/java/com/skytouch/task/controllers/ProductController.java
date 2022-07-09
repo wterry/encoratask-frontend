@@ -34,6 +34,7 @@ public class ProductController extends AbstractController {
     @PostMapping("/create")
     public ResponseEntity<Response> createProduct(@RequestBody @Valid ProductDTO product) {
         try {
+            product.sanitizeTextInputs();
             String correlationalId = service.createProduct(product);
 
             return new ResponseEntity<Response> (new Response(HttpStatus.OK.value(), "Request queued", correlationalId), HttpStatus.OK);
@@ -45,6 +46,7 @@ public class ProductController extends AbstractController {
     @PutMapping("/update")
     public ResponseEntity<Response> updateProduct(@RequestBody @Valid UpdateProductDTO product) {
         try {
+            product.sanitizeTextInputs();
             String correlationalId = service.updateProduct(product);
 
             return new ResponseEntity<Response> (new Response(HttpStatus.OK.value(), "Request queued", correlationalId), HttpStatus.OK);
