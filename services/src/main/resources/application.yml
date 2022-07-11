@@ -1,5 +1,5 @@
 kafka:
-  bootstrapServers: 127.0.0.1:9092
+  bootstrapServers: 127.0.0.1:49816
   consumers:
     group: task-group
     topicName: task_topic
@@ -11,6 +11,15 @@ spring:
     view:
       prefix: /WEB-INF/jsp/
       suffix: .jsp
+
+restEndpoints:
+  listProductsUri: http://localhost:8080/products
+  deleteProductUri: http://localhost:8080/products/delete/
+  findProductByIdUri: http://localhost:8080/products
+  updateProductUri: http://localhost:8080/products/update
+  restockInvoicesUri: http://localhost:8080/inventory/restockInvoices
+  addProductUrl: http://localhost:8080/products/create
+
 
 #Stops embedded tomcat from scanning for unnecessary xml dependencies that produce a WARN FileNotFound exception on startup and stress me out.
 server:
